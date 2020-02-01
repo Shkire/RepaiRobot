@@ -14,8 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _stairsMargin;
 
+    [UnityEngine.Serialization.FormerlySerializedAs("_secondsToWasteExtenguisher")]
     [SerializeField]
-    private float _secondsToWasteExtenguiser;
+    private float _secondsToWasteExtenguisher;
+    [SerializeField]
+    private float _secondsToRefillExtenguisher;
 
     [SerializeField]
     private GameObject _extinguisherEffect;
@@ -42,6 +45,8 @@ public class PlayerController : MonoBehaviour
 
     private float _extinguisherLevel = 1f;
 
+    private bool _refilling;
+
     private void OnEnable()
     {
         if (_rigidBody == null)
@@ -55,13 +60,21 @@ public class PlayerController : MonoBehaviour
         float magnitude = _particlesParent.localScale.magnitude;
         if (magnitude > 0.01)
         {
-            _extinguisherLevel -= Mathf.InverseLerp(0, _secondsToWasteExtenguiser, Time.deltaTime) * magnitude;
+            _extinguisherLevel -= Mathf.InverseLerp(0, _secondsToWasteExtenguisher, Time.deltaTime) * magnitude;
         }
         if (_extinguisherLevel <= 0)
         {
             _particlesParent.gameObject.SetActive(false);
+            _particlesParent.localScale = Vector2.zero;
+            _smoothParticlesVelocity = Vector2.zero;
         }
 
+
+        if (_refilling)
+        {
+            _extinguisherLevel += Mathf.InverseLerp(0, _secondsToRefillExtenguisher, Time.deltaTime);
+            _extinguisherLevel = Mathf.Clamp01(_extinguisherLevel);
+        }
 
         _horizontalValue = Input.GetAxis("Horizontal");
         _verticalValue = Input.GetAxis("Vertical");
@@ -77,14 +90,20 @@ public class PlayerController : MonoBehaviour
             Quaternion auxQuat = Quaternion.Euler(0f, 0f, Mathf.SmoothDampAngle(angle, newAngle, ref _smoothVelocity, _smoothTime));
             _extinguisherEffect.transform.rotation = auxQuat;
 
-            aux = _particlesParent.localScale;
-            _particlesParent.localScale = Vector2.SmoothDamp(aux, Vector2.one, ref _smoothParticlesVelocity, _particlesStartSmoothTime);
+            if (_extinguisherLevel > 0)
+            {
+                aux = _particlesParent.localScale;
+                _particlesParent.localScale = Vector2.SmoothDamp(aux, Vector2.one, ref _smoothParticlesVelocity, _particlesStartSmoothTime);
+            }
         }
         else
         {
             _smoothVelocity = 0f;
-            aux = _particlesParent.localScale;
-            _particlesParent.localScale = Vector2.SmoothDamp(aux, Vector2.zero, ref _smoothParticlesVelocity, _particlesEndSmoothTime);
+            if (_extinguisherLevel > 0)
+            {
+                aux = _particlesParent.localScale;
+                _particlesParent.localScale = Vector2.SmoothDamp(aux, Vector2.zero, ref _smoothParticlesVelocity, _particlesEndSmoothTime);
+            }
         }
     }
 
@@ -140,6 +159,11 @@ public class PlayerController : MonoBehaviour
         {
             _stairs = collision.GetComponent<Stairs>();
         }
+
+        if (collision.GetComponent<Refiller>() != null)
+        {
+            _refilling = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -147,6 +171,11 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Stair")
         {
             _stairs = null;
+        }
+
+        if (collision.GetComponent<Refiller>() != null)
+        {
+            _refilling = false;
         }
     }
 }
