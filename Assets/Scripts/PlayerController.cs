@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
         if (_usingStairs)
         {
-            _rigidBody.velocity = new Vector2(0f, _verticalValue);
+            _rigidBody.velocity = new Vector2(0f, _verticalValue * _climbSpeed);
             return;
         }
 
