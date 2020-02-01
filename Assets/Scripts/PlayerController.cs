@@ -7,7 +7,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float Speed = 1f;
+    private float _speed = 1f;
+    [SerializeField]
+    private float _climbSpeed = 1f;
 
     [SerializeField]
     private float _stairsMargin;
@@ -15,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float _horizontalValue;
     private float _verticalValue;
     private bool _usingStairs;
-    private Collider2D _collider2D;
+    private Stairs _stairs;
 
     private void OnEnable()
     {
@@ -36,31 +38,29 @@ public class PlayerController : MonoBehaviour
         Vector3 aux = Vector3.zero;
         if (_usingStairs)
         {
-            if (transform.position.y > _collider2D.bounds.max.y - _collider2D.bounds.extents.y * _stairsMargin * 0.5f || transform.position.y < _collider2D.bounds.min.y + _collider2D.bounds.extents.y * _stairsMargin * 0.5f)
+            if (transform.position.y > _stairs.topPosition.y || transform.position.y < _stairs.bottomPosition.y)
             {
                 _rigidBody.isKinematic = false;
                 _usingStairs = false;
             }
         }
 
-        if (_collider2D != null && !_usingStairs)
+        if (_stairs != null && !_usingStairs)
         {
-            if (_verticalValue != 0)
+            if ((Mathf.Abs(transform.position.x - _stairs.transform.position.x) <= _stairsMargin) && (transform.position.y > _stairs.topPosition.y && _verticalValue < 0) || (transform.position.y < _stairs.bottomPosition.y && _verticalValue > 0))
             {
-                if ((transform.position.y > _collider2D.bounds.max.y - _collider2D.bounds.extents.y * _stairsMargin * 0.5f && _verticalValue < 0) || (transform.position.y < _collider2D.bounds.min.y + _collider2D.bounds.extents.y * _stairsMargin * 0.5f && _verticalValue > 0))
+                _usingStairs = true;
+                _rigidBody.isKinematic = true;
+                aux = transform.position;
+                if (_verticalValue > 0)
                 {
-                    _usingStairs = true;
-                    _rigidBody.isKinematic = true;
-                    aux = transform.position;
-                    if (_verticalValue > 0)
-                    {
-                        aux.y = _collider2D.bounds.min.y + _collider2D.bounds.extents.y * _stairsMargin * 0.5f;
-                    }
-                    else
-                    {
-                        aux.y = _collider2D.bounds.max.y - _collider2D.bounds.extents.y * _stairsMargin * 0.5f;
-                    }
+                    aux.y = _stairs.bottomPosition.y;
                 }
+                else
+                {
+                    aux.y = _stairs.topPosition.y;
+                }
+                transform.position = aux;
             }
         }
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
 
         aux = _rigidBody.velocity;
-        aux.x = _horizontalValue * Speed;
+        aux.x = _horizontalValue * _speed;
         _rigidBody.velocity = aux;
     }
 
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Stair")
         {
-            _collider2D = collision;
+            _stairs = collision.GetComponent<Stairs>();
         }
     }
 
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Stair")
         {
-            _collider2D = null;
+            _stairs = null;
         }
     }
 }
