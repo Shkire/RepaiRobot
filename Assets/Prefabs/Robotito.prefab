@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1604704938099810807}
   - component: {fileID: 7572994997998036886}
   - component: {fileID: 8932214266538148252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Robotito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
