@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 409055227}
   - component: {fileID: 409055229}
   m_Layer: 0
-  m_Name: Plataform 2
+  m_Name: Platform 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +302,7 @@ PrefabInstance:
     - target: {fileID: 7424513327903966140, guid: c1f4884763fb6f049aca2290ab397f24,
         type: 3}
       propertyPath: m_Name
-      value: Robotito 4
+      value: Player4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1f4884763fb6f049aca2290ab397f24, type: 3}
@@ -316,9 +316,10 @@ GameObject:
   m_Component:
   - component: {fileID: 548064108}
   - component: {fileID: 548064107}
+  - component: {fileID: 548064109}
   m_Layer: 0
   m_Name: Stairs 4
-  m_TagString: Untagged
+  m_TagString: Stair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,8 +359,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1766246679
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.87843144, g: 0.86666673, b: 0.04705883, a: 1}
@@ -386,6 +387,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &548064109
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548064106}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1 &669993393
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +425,7 @@ GameObject:
   - component: {fileID: 669993394}
   - component: {fileID: 669993396}
   m_Layer: 0
-  m_Name: Plataform 4
+  m_Name: Platform 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -611,7 +638,7 @@ GameObject:
   - component: {fileID: 812325670}
   - component: {fileID: 812325669}
   m_Layer: 0
-  m_Name: Food
+  m_Name: FoodContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -755,7 +782,7 @@ PrefabInstance:
     - target: {fileID: 7424513327903966140, guid: c1f4884763fb6f049aca2290ab397f24,
         type: 3}
       propertyPath: m_Name
-      value: Robotito 3
+      value: Player3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1f4884763fb6f049aca2290ab397f24, type: 3}
@@ -960,7 +987,7 @@ GameObject:
   - component: {fileID: 1220729882}
   - component: {fileID: 1220729881}
   m_Layer: 0
-  m_Name: Tracto Marillo
+  m_Name: Forklift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1041,7 +1068,7 @@ GameObject:
   - component: {fileID: 1232653792}
   - component: {fileID: 1232653794}
   m_Layer: 0
-  m_Name: Plataform 3
+  m_Name: Platform 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1147,7 +1174,7 @@ GameObject:
   - component: {fileID: 1364507640}
   - component: {fileID: 1364507639}
   m_Layer: 0
-  m_Name: Extint
+  m_Name: ExtinguisherTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1226,9 +1253,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1366429822}
   - component: {fileID: 1366429821}
+  - component: {fileID: 1366429823}
   m_Layer: 0
   m_Name: Stairs 2
-  m_TagString: Untagged
+  m_TagString: Stair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1268,8 +1296,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1766246679
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.9150943, g: 0.9032381, b: 0.047481313, a: 1}
@@ -1296,6 +1324,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1366429823
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366429820}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.03}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1 &1406736996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1361,7 @@ GameObject:
   - component: {fileID: 1406736998}
   - component: {fileID: 1406736997}
   m_Layer: 0
-  m_Name: Cuerda huida 2
+  m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1386,9 +1440,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1524128920}
   - component: {fileID: 1524128919}
+  - component: {fileID: 1524128921}
   m_Layer: 0
   m_Name: Stairs 1
-  m_TagString: Untagged
+  m_TagString: Stair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1428,8 +1483,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1766246679
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.9245283, g: 0.8674886, b: 0.056692798, a: 1}
@@ -1456,6 +1511,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1524128921
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524128918}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.03}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1 &1599521136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,7 +1628,7 @@ GameObject:
   - component: {fileID: 1645316000}
   - component: {fileID: 1645315999}
   m_Layer: 0
-  m_Name: Electric
+  m_Name: ElectricBattery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1626,9 +1707,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1657971753}
   - component: {fileID: 1657971752}
+  - component: {fileID: 1657971754}
   m_Layer: 0
   m_Name: Stairs 3
-  m_TagString: Untagged
+  m_TagString: Stair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1668,8 +1750,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1766246679
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.87843144, g: 0.86666673, b: 0.04705883, a: 1}
@@ -1696,6 +1778,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1657971754
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657971751}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1001 &1736800808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1761,7 +1869,7 @@ PrefabInstance:
     - target: {fileID: 7424513327903966140, guid: c1f4884763fb6f049aca2290ab397f24,
         type: 3}
       propertyPath: m_Name
-      value: Robotito 2
+      value: Player2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1f4884763fb6f049aca2290ab397f24, type: 3}
@@ -1776,7 +1884,7 @@ GameObject:
   - component: {fileID: 1879549724}
   - component: {fileID: 1879549723}
   m_Layer: 0
-  m_Name: Cuerda huida 1
+  m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1857,7 +1965,7 @@ GameObject:
   - component: {fileID: 1880812082}
   - component: {fileID: 1880812084}
   m_Layer: 0
-  m_Name: Plataform 1
+  m_Name: Platform 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2204,7 +2312,7 @@ PrefabInstance:
     - target: {fileID: 7424513327903966140, guid: c1f4884763fb6f049aca2290ab397f24,
         type: 3}
       propertyPath: m_Name
-      value: Robotito 1
+      value: Player1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1f4884763fb6f049aca2290ab397f24, type: 3}

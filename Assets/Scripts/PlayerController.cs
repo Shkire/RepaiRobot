@@ -8,11 +8,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float Speed = 1f;
+
+    [SerializeField]
+    private float _stairsMargin;
     private Rigidbody2D _rigidBody;
     private float _horizontalValue;
     private float _verticalValue;
-    private bool _onStair;
     private bool _usingStairs;
+    private Collider2D _collider2D;
 
     private void OnEnable()
     {
@@ -30,23 +33,45 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_onStair && !_usingStairs)
+        Vector3 aux = Vector3.zero;
+        if (_usingStairs)
+        {
+            if (transform.position.y > _collider2D.bounds.max.y - _collider2D.bounds.extents.y * _stairsMargin * 0.5f || transform.position.y < _collider2D.bounds.min.y + _collider2D.bounds.extents.y * _stairsMargin * 0.5f)
+            {
+                _rigidBody.isKinematic = false;
+                _usingStairs = false;
+            }
+        }
+
+        if (_collider2D != null && !_usingStairs)
         {
             if (_verticalValue != 0)
             {
-                _usingStairs = true;
+                if ((transform.position.y > _collider2D.bounds.max.y - _collider2D.bounds.extents.y * _stairsMargin * 0.5f && _verticalValue < 0) || (transform.position.y < _collider2D.bounds.min.y + _collider2D.bounds.extents.y * _stairsMargin * 0.5f && _verticalValue > 0))
+                {
+                    _usingStairs = true;
+                    _rigidBody.isKinematic = true;
+                    aux = transform.position;
+                    if (_verticalValue > 0)
+                    {
+                        aux.y = _collider2D.bounds.min.y + _collider2D.bounds.extents.y * _stairsMargin * 0.5f;
+                    }
+                    else
+                    {
+                        aux.y = _collider2D.bounds.max.y - _collider2D.bounds.extents.y * _stairsMargin * 0.5f;
+                    }
+                }
             }
         }
 
 
         if (_usingStairs)
         {
-            _rigidBody.isKinematic = true;
             _rigidBody.velocity = new Vector2(0f, _verticalValue);
             return;
         }
 
-        Vector3 aux = _rigidBody.velocity;
+        aux = _rigidBody.velocity;
         aux.x = _horizontalValue * Speed;
         _rigidBody.velocity = aux;
     }
@@ -55,7 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Stair")
         {
-            _onStair = true;
+            _collider2D = collision;
         }
     }
 
@@ -63,9 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Stair")
         {
-            _onStair = false;
-            _usingStairs = false;
-            _rigidBody.isKinematic = false;
+            _collider2D = null;
         }
     }
 }

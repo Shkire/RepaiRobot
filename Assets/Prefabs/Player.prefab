@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7572994997998036886}
   - component: {fileID: 8932214266538148252}
   m_Layer: 8
-  m_Name: Robotito
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
+  _stairsMargin: 0.1
 --- !u!61 &8932214266538148252
 BoxCollider2D:
   m_ObjectHideFlags: 0
