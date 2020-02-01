@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
         if (_stairs != null && !_usingStairs)
         {
-            if ((Mathf.Abs(transform.position.x - _stairs.transform.position.x) <= _stairsMargin) && (transform.position.y > _stairs.topPosition.y && _verticalValue < 0) || (transform.position.y < _stairs.bottomPosition.y && _verticalValue > 0))
+            if ((Mathf.Abs(transform.position.x - _stairs.transform.position.x) <= _stairsMargin) && ((transform.position.y > _stairs.topPosition.y && _verticalValue < 0) || (transform.position.y < _stairs.bottomPosition.y && _verticalValue > 0)))
             {
                 _usingStairs = true;
                 _rigidBody.isKinematic = true;
