@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
             {
                 _rigidBody.isKinematic = false;
                 _usingStairs = false;
+                aux = _rigidBody.velocity;
+                aux.y = 0f;
+                _rigidBody.velocity = aux;
             }
         }
 
