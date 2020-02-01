@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
         }
         if (_extinguisherLevel <= 0)
         {
-            _particlesParent.gameObject.SetActive(false);
             _particlesParent.localScale = Vector2.zero;
             _smoothParticlesVelocity = Vector2.zero;
         }
