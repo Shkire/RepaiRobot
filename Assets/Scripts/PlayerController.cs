@@ -33,6 +33,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _particlesEndSmoothTime;
 
+    [SerializeField]
+    private Animator[] _animators;
+
+    [SerializeField]
+    private AnimationCurve _speedToMultiplier;
+
     private float _smoothVelocity;
     private Vector2 _smoothParticlesVelocity;
     private Rigidbody2D _rigidBody;
@@ -86,7 +92,16 @@ public class PlayerController : MonoBehaviour
         {
             float angle = _extinguisherEffect.transform.rotation.eulerAngles.z;
             float newAngle = Vector2.SignedAngle(Vector2.right, aux);
-            Quaternion auxQuat = Quaternion.Euler(0f, 0f, Mathf.SmoothDampAngle(angle, newAngle, ref _smoothVelocity, _smoothTime));
+            newAngle = Mathf.SmoothDampAngle(angle, newAngle, ref _smoothVelocity, _smoothTime);
+            Quaternion auxQuat = Quaternion.Euler(0f, 0f, newAngle);
+            if (Mathf.DeltaAngle(0, newAngle) > 90 || Mathf.DeltaAngle(0, newAngle) < -90)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
             _extinguisherEffect.transform.rotation = auxQuat;
 
             if (_extinguisherLevel > 0)
@@ -149,6 +164,19 @@ public class PlayerController : MonoBehaviour
 
         aux = _rigidBody.velocity;
         aux.x = _horizontalValue * _speed;
+
+        if (_animators != null)
+        {
+            foreach (Animator animator in _animators)
+            {
+                if (animator != null)
+                {
+                    animator.SetFloat("Speed", Mathf.Abs(aux.x));
+                    animator.SetFloat("SpeedMultiplier", _speedToMultiplier.Evaluate(Mathf.Abs(aux.x)) * (transform.rotation.eulerAngles.y > 90 || transform.rotation.eulerAngles.y < -90 ? -1 : 1) * Mathf.Sign(aux.x));
+                }
+            }
+        }
+
         _rigidBody.velocity = aux;
     }
 

@@ -650,6 +650,34 @@ MonoBehaviour:
   _smoothTime: 0.2
   _particlesStartSmoothTime: 0.1
   _particlesEndSmoothTime: 0.2
+  _animators:
+  - {fileID: 328352233718926335}
+  - {fileID: 596579113670236283}
+  - {fileID: 2413277313918685236}
+  _speedToMultiplier:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.2857143
+      outSlope: 0.2857143
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3.5
+      value: 2
+      inSlope: 0.2857143
+      outSlope: 0.2857143
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!61 &8932214266538148252
 BoxCollider2D:
   m_ObjectHideFlags: 0
