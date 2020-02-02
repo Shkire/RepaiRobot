@@ -33,6 +33,7 @@ public class BrokenRobotController : MonoBehaviour
 
     private void OnEnable()
     {
+        Time.timeScale = 1;
         _activeFireZones = new List<FireZone>();
         _creatingFireZones = new List<FireZone>();
         _gameOverCoroutines = new Dictionary<FireZone, Coroutine>();
@@ -48,6 +49,7 @@ public class BrokenRobotController : MonoBehaviour
             {
                 StopCoroutine(_gameOverCoroutines[_activeFireZones[i]]);
                 _gameOverCoroutines.Remove(_activeFireZones[i]);
+                _activeFireZones.Remove(_activeFireZones[i]);
                 i--;
             }
         }
@@ -76,6 +78,7 @@ public class BrokenRobotController : MonoBehaviour
         fireZone.enabled = true;
 
         _creatingFireZones.Remove(fireZone);
+        _activeFireZones.Add(fireZone);
         _gameOverCoroutines.Add(fireZone, StartCoroutine(GameOverCoroutine()));
     }
 
@@ -84,5 +87,6 @@ public class BrokenRobotController : MonoBehaviour
         yield return new WaitForSeconds(_fireZonesGameOverTime.Evaluate(_time));
 
         _gameOver.SetActive(true);
+        Time.timeScale = 0;
     }
 }
