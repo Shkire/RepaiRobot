@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     private int _player;
 
     [SerializeField]
+    private RectTransform _extinguiserLevelUi;
+
+    [SerializeField]
     private float _speed = 1f;
     [SerializeField]
     private float _climbSpeed = 1f;
@@ -93,7 +96,7 @@ public class PlayerController : MonoBehaviour
         }
 
         _horizontalValue = Input.GetAxis("Horizontal_Player" + _player);
-        _verticalValue = Input.GetAxis("Vertical_Player" + _player);
+        _verticalValue = Input.GetAxis("Vertical_Player" + _player + "_Joycon") != 0 ? -Input.GetAxis("Vertical_Player" + _player + "_Joycon") : Input.GetAxis("Vertical_Player" + _player);
         _verticalExtinguisherValue = Input.GetAxis("VerticalExtinguiser_Player" + _player);
         _horizontalExtinguiserValue = Input.GetAxis("HorizontalExtinguiser_Player" + _player);
 
@@ -130,6 +133,8 @@ public class PlayerController : MonoBehaviour
                 _particlesParent.localScale = Vector2.SmoothDamp(aux, Vector2.zero, ref _smoothParticlesVelocity, _particlesEndSmoothTime);
             }
         }
+
+        _extinguiserLevelUi.anchorMax = new Vector2(Mathf.Clamp01(_extinguisherLevel), 1);
     }
 
     private void FixedUpdate()

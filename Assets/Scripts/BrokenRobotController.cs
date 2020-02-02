@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BrokenRobotController : MonoBehaviour
 {
+    [SerializeField]
+    private Text _timer;
+
     [SerializeField]
     private GameObject _gameOver;
 
@@ -42,6 +46,7 @@ public class BrokenRobotController : MonoBehaviour
     void Update()
     {
         _time += Time.deltaTime;
+        _timer.text = Mathf.FloorToInt(_time) + "";
 
         for (int i = 0; i < _activeFireZones.Count; i++)
         {
