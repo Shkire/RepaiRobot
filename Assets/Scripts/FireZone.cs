@@ -7,7 +7,7 @@ public class FireZone : MonoBehaviour
     public float value;
 
     private List<Collider2D> _colliders;
-    private SpriteRenderer _spriteRenderer;
+    private ParticleSystem _particles;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -45,12 +45,13 @@ public class FireZone : MonoBehaviour
 
     private void OnEnable()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.color = Color.red;
+        _particles = GetComponent<ParticleSystem>();
+        _particles.Play();
     }
 
     private void OnDisable()
     {
-        _spriteRenderer.color = Color.white;
+        _particles.Stop();
+
     }
 }

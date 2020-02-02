@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     private Stairs _stairs;
     private float _horizontalExtinguiserValue;
     private float _verticalExtinguisherValue;
+    private ParticleSystem _extinguisherParticles;
 
     private float _extinguisherLevel = 1f;
 
@@ -61,6 +62,8 @@ public class PlayerController : MonoBehaviour
         if (_rigidBody == null)
         {
             _rigidBody = GetComponent<Rigidbody2D>();
+
+            _extinguisherParticles = _particlesParent.GetComponentInChildren<ParticleSystem>();
         }
     }
 
@@ -69,7 +72,12 @@ public class PlayerController : MonoBehaviour
         float magnitude = _particlesParent.localScale.magnitude;
         if (magnitude > 0.01)
         {
+            _extinguisherParticles.gameObject.SetActive(true);
             _extinguisherLevel -= Mathf.InverseLerp(0, _secondsToWasteExtenguisher, Time.deltaTime) * magnitude;
+        }
+        else
+        {
+            _extinguisherParticles.gameObject.SetActive(false);
         }
         if (_extinguisherLevel <= 0)
         {
